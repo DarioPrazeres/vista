@@ -1,0 +1,524 @@
+/* Cores do Logotipo VISA */
+:root {
+    --color-red: #E63946; /* Faixas e Detalhes */
+    --color-blue: #1D3557; /* Botões e Destaques */
+    --color-white: #FFFFFF; /* Fundo Principal */
+    --color-black: #000000; /* Texto e Contornos */
+    --color-light-blue: #457B9D; /* Azul Secundário para gradientes suaves */
+}
+
+/* Base e Tipografia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: var(--color-blue);
+    margin-bottom: 10px;
+}
+
+h2.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--color-red);
+    display: inline-block;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+/* --- Cabeçalho Fixo --- */
+.fixed-header {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo-text-visa {
+    color: var(--color-blue);
+    font-size: 1.8em;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+.logo-text-fc {
+    color: var(--color-red);
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+/* Menu de Navegação */
+.main-nav a {
+    color: var(--color-black);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 600;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding-bottom: 5px;
+}
+
+.main-nav a:hover {
+    color: var(--color-blue);
+    border-bottom: 2px solid var(--color-red);
+}
+
+/* --- Menu Hamburguer (Mobile) --- */
+.hamburger-menu {
+    display: none; /* Oculto por padrão em desktop */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-blue);
+}
+
+.mobile-nav {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    top: 60px; /* Ajuste para ficar abaixo do header */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-blue);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    z-index: 999;
+}
+
+.mobile-nav.is-active {
+    display: flex;
+}
+
+.mobile-nav a {
+    color: var(--color-white);
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-light-blue);
+    transition: background-color 0.3s;
+}
+
+.mobile-nav a:hover {
+    background-color: var(--color-light-blue);
+}
+
+/* --- Botões Gerais --- */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border: 2px solid var(--color-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-light-blue);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    border: 2px solid var(--color-red);
+}
+
+.btn-secondary:hover {
+    background-color: #c9343f; /* Tom mais escuro do vermelho */
+    transform: translateY(-2px);
+}
+
+/* --- Banner (Home) --- */
+.hero-banner {
+    background: url('fundo-campo-ficticio.jpg') center/cover no-repeat; /* Use uma imagem de fundo real */
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px; /* Espaço para o header fixo */
+    /* Fundo animado: Simulação com transição de cor suave */
+    animation: pulse-bg 10s infinite alternate;
+}
+
+@keyframes pulse-bg {
+    0% { background-color: rgba(29, 53, 87, 0.8); } /* Azul */
+    100% { background-color: rgba(230, 57, 70, 0.8); } /* Vermelho */
+}
+
+.banner-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px 50px;
+    border-radius: 10px;
+    color: var(--color-white);
+}
+
+.hero-banner h1 {
+    color: var(--color-white);
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-banner p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+/* --- Cards e Destaques (Grid/Flexbox) --- */
+.card {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-top: 5px solid var(--color-red); /* Detalhe vermelho */
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.destaque-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.card-score .score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+.score-result {
+    font-size: 2.5em;
+    font-weight: 700;
+    padding: 0 15px;
+}
+.score-win { color: var(--color-blue); }
+.score-loss { color: var(--color-red); }
+.score-separator { font-size: 1.5em; margin: 0 10px; color: var(--color-black); }
+.team-name { font-weight: 600; font-size: 1.1em; }
+
+/* --- Seções com Detalhe Vermelho --- */
+.section-red-details {
+    background-color: #f8f9fa; /* Fundo levemente acinzentado */
+    position: relative;
+    padding-bottom: 80px;
+    overflow: hidden;
+}
+.section-red-details::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: var(--color-red);
+}
+
+/* --- Seção Sobre --- */
+.section-sobre ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.section-sobre ul li {
+    background-color: var(--color-white);
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    flex-basis: 30%;
+    text-align: center;
+    border-bottom: 3px solid var(--color-blue);
+}
+.section-sobre ul li i {
+    color: var(--color-red);
+    margin-right: 10px;
+}
+
+/* --- Partidas (Tabela) --- */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+.match-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+}
+.match-table th, .match-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+.match-table th {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.match-table tr:hover {
+    background-color: #f1f1f1;
+}
+.result-win { color: var(--color-blue); font-weight: 700; }
+.result-loss { color: var(--color-red); font-weight: 700; }
+.result-draw { color: var(--color-black); font-style: italic; }
+
+/* --- Estatísticas (Cards) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.stat-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.player-number {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 4em;
+    font-weight: 900;
+    color: var(--color-blue);
+    opacity: 0.1;
+}
+.performance {
+    color: var(--color-red);
+    font-style: italic;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* --- Loja (Grid) --- */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    text-align: center;
+}
+.product-image {
+    padding: 20px;
+    margin-bottom: 15px;
+    color: var(--color-light-blue); /* Ícone no tom azul suave */
+}
+.product-price {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--color-blue);
+    margin-bottom: 15px;
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.footer-links, .footer-social {
+    margin: 15px;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: var(--color-red);
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: var(--color-white);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--color-red);
+}
+
+.footer-social a {
+    color: var(--color-white);
+    margin-right: 15px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: var(--color-red);
+}
+
+.footer-copyright {
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid var(--color-light-blue);
+    font-size: 0.9em;
+}
+
+/* --- Modal (Popup) --- */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 10px;
+    border-top: 5px solid var(--color-red);
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close-button {
+    color: var(--color-black);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-red);
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: var(--color-blue);
+    margin-bottom: 15px;
+}
+.modal-message {
+    margin-top: 15px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* -------------------------------------- */
+/* --- Media Queries (Responsividade) --- */
+/* -------------------------------------- */
+
+@media (max-width: 900px) {
+    .main-nav {
+        display: none; /* Oculta o menu de desktop */
+    }
+
+    .hamburger-menu {
+        display: block; /* Mostra o menu hamburguer */
+    }
+
+    .header-content {
+        padding: 10px 15px;
+    }
+
+    .hero-banner {
+        height: 400px;
+        margin-top: 50px;
+    }
+
+    .hero-banner h1 {
+        font-size: 2.2em;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-social a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .destaque-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .shop-grid, .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-score .score-result {
+        font-size: 2em;
+    }
+    
+    .section-sobre ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

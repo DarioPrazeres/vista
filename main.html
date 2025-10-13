@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISA FC - Futebol Corporativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --vermelho: #E63946;
+            --azul: #1D3557;
+            --branco: #FFFFFF;
+            --preto: #000000;
+            --cinza: #F1F3F5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--preto);
+            background: var(--branco);
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background: var(--branco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azul);
+        }
+
+        .logo-visa {
+            background: var(--azul);
+            color: var(--branco);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--preto);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--vermelho);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--vermelho);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--azul);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--azul) 0%, var(--vermelho) 100%);
+            color: var(--branco);
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '⚽';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--branco);
+            color: var(--azul);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: var(--azul);
+            color: var(--branco);
+        }
+
+        .btn-secondary {
+            background: var(--vermelho);
+            color: var(--branco);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 5%;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--azul);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--vermelho);
+        }
+
+        /* Destaques Home */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--vermelho);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--azul);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .score {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .score span {
+            color: var(--vermelho);
+        }
+
+        /* Sobre */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .about-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .about-img {
+            background: linear-gradient(135deg, var(--azul) 0%, var(--vermelho) 100%);
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: var(--branco);
+            opacity: 0.9;
+        }
+
+        /* Tabela Partidas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background: var(--branco);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: var(--azul);
+            color: var(--branco);
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s;
+        }
+
+        tbody tr:hover {
+            background: var(--cinza);
+        }
+
+        .resultado-v {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+
+        .resultado-d {
+            color: var(--vermelho);
+            font-weight: 600;
+        }
+
+        .resultado-e {
+            color: #f39c12;
+            font-weight: 600;
+        }
+
+        /* Estatísticas Jogadores */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .player-card {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--vermelho);
+        }
+
+        .player-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--azul);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--branco);
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            color: var(--azul);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .player-position {
+            color: var(--vermelho);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--cinza);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--azul);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Loja */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 250px;
+            background: linear-gradient(135deg, var(--azul) 0%, var(--vermelho) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: var(--branco);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            color: var(--azul);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--vermelho);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--azul);
+            color: var(--branco);
+            padding: 60px 5% 20px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+            opacity: 0.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--vermelho);
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--branco);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--azul);
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--vermelho);
+        }
+
+        .modal h3 {
+            color: var(--azul);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .modal p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--branco);
+                width: 100%;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transition: right 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-visa">VISA</div>
+                <span>FC</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#partidas">Partidas</a></li>
+                <li><a href="#estatisticas">Estatísticas</a></li>
+                <li><a href="#loja">Loja</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>VISA FC</h1>
+        <p>Unidos pelo esporte, fortalecidos pela equipe</p>
+        <button class="btn" id="nextGameBtn">Ver Próximo Jogo ⚽</button>
+    </section>
+
+    <!-- Destaques -->
+    <div class="container">
+        <section class="highlights">
+            <div class="card">
+                <h3>🏆 Sobre o Time</h3>
+                <p>O VISA FC representa a excelência e o espírito colaborativo da nossa empresa. Formado por colaboradores apaixonados, competimos em torneios corporativos com determinação e fair play.</p>
+            </div>
+            <div class="card">
+                <h3>📅 Próximo Jogo</h3>
+                <p><strong>VISA FC vs MasterCard United</strong></p>
+                <p>Data: 25 de Outubro, 2025</p>
+                <p>Local: Centro Desportivo Luanda</p>
+                <p>Horário: 18:00</p>
+            </div>
+            <div class="card">
+                <h3>⚽ Último Resultado</h3>
+                <div class="score">
+                    VISA FC <span>3</span> - <span>1</span> PayPal FC
+                </div>
+                <p>Grande vitória no último fim de semana com hat-trick de Carlos Silva!</p>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <section id="sobre">
+            <h2>Sobre o VISA FC</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>História:</strong> Fundado em 2018, o VISA FC nasceu da paixão dos colaboradores pelo futebol e pela vontade de criar momentos de união fora do ambiente corporativo.</p>
+                    <p><strong>Missão:</strong> Promover a integração, saúde e bem-estar dos colaboradores através do esporte, fortalecendo laços e representando os valores da VISA: inovação, trabalho em equipe e excelência.</p>
+                    <p><strong>Valores:</strong> Respeito, dedicação, fair play e espírito de equipe são os pilares que guiam cada treino e cada partida do VISA FC.</p>
+                    <p><strong>Conquistas:</strong> 2 títulos regionais, 3 vice-campeonatos e inúmeros momentos de celebração e companheirismo!</p>
+                </div>
+                <div class="about-img">⚽🏆</div>
+            </div>
+        </section>
+
+        <!-- Partidas -->
+        <section id="partidas">
+            <h2>Partidas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Adversário</th>
+                        <th>Resultado</th>
+                        <th>Local</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>25/10/2025</td>
+                        <td>MasterCard United</td>
+                        <td>-</td>
+                        <td>Centro Desportivo Luanda</td>
+                    </tr>
+                    <tr>
+                        <td>05/10/2025</td>
+                        <td>PayPal FC</td>
+                        <td class="resultado-v">V 3-1</td>
+                        <td>Estádio Municipal</td>
+                    </tr>
+                    <tr>
+                        <td>22/09/2025</td>
+                        <td>Apple Sports Club</td>
+                        <td class="resultado-e">E 2-2</td>
+                        <td>Campo da Empresa</td>
+                    </tr>
+                    <tr>
+                        <td>10/09/2025</td>
+                        <td>Google FC</td>
+                        <td class="resultado-v">V 4-2</td>
+                        <td>Centro Desportivo Luanda</td>
+                    </tr>
+                    <tr>
+                        <td>28/08/2025</td>
+                        <td>Amazon Athletic</td>
+                        <td class="resultado-d">D 1-3</td>
+                        <td>Complexo Desportivo</td>
+                    </tr>
+                    <tr>
+                        <td>15/08/2025</td>
+                        <td>Microsoft United</td>
+                        <td class="resultado-v">V 2-0</td>
+                        <td>Estádio Municipal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Estatísticas -->
+        <section id="estatisticas">
+            <h2>Estatísticas dos Jogadores</h2>
+            <div class="players-grid">
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">Carlos Silva</div>
+                    <div class="player-position">Atacante</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Assistências</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">João Ferreira</div>
+                    <div class="player-position">Meio-Campo</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Assistências</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">Miguel Santos</div>
+                    <div class="player-position">Defensor</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Defesas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">Pedro Costa</div>
+                    <div class="player-position">Goleiro</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Jogos s/ Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">67</div>
+                            <div class="stat-label">Defesas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">Ricardo Lima</div>
+                    <div class="player-position">Atacante</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">14</div>
+                            <div class="stat-label">Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">9</div>
+                            <div class="stat-label">Assistências</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <div class="player-avatar">👨</div>
+                    <div class="player-name">André Oliveira</div>
+                    <div class="player-position">Meio-Campo</div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Gols</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">11</div>
+                            <div class="stat-label">Assistências</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loja -->
+        <section id="loja">
+            <h2>Loja VISA FC</h2>
+            <div class="shop-grid">
+                <div class="product-card">
+                    <div class="product-img">👕</div>
+                    <div class="product-info">
+                        <div class="product-name">Camisola Oficial Home</div>
+                        <div class="product-price">45.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">👕</div>
+                    <div class="product-info">
+                        <div class="product-name">Camisola Away</div>
+                        <div class="product-price">45.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">🧢</div>
+                    <div class="product-info">
+                        <div class="product-name">Boné VISA FC</div>
+                        <div class="product-price">20.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">🧣</div>
+                    <div class="product-info">
+                        <div class="product-name">Cachecol Oficial</div>
+                        <div class="product-price">25.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">⚽</div>
+                    <div class="product-info">
+                        <div class="product-name">Bola Oficial VISA FC</div>
+                        <div class="product-price">35.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">🎽</div>
+                    <div class="product-info">
+                        <div class="product-name">Colete de Treino</div>
+                        <div class="product-price">30.00 Kz</div>
+                        <button class="btn btn-primary">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VISA FC</h3>
+                <p>Time de futebol corporativo da VISA, promovendo união e saúde através do esporte.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#partidas">Partidas</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
+                    <li><a href="#loja">Loja</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">▶️</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>📧 visafc@visa.com</p>
+                <p>📞 +244 123 456 789</p>
+                <p>📍 Luanda, Angola</p>
+            </div>
+        </div>
+    </footer>
+</body>
