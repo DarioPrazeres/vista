@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silva & Associados - Advocacia de Excelência</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8941F;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--black);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            fill: var(--gold);
+        }
+
+        .brand-name {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, #2a2a2a 100%);
+            color: var(--white);
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            fill: var(--gold);
+            margin-bottom: 30px;
+            animation: fadeIn 1s;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            animation: slideDown 0.8s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: slideUp 0.8s;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--black);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .about-text h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--gold) 0%, var(--dark-gold) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-image svg {
+            width: 200px;
+            height: 200px;
+            fill: var(--white);
+            opacity: 0.3;
+        }
+
+        /* Practice Areas */
+        .practice-areas {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .area-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .area-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .area-icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .area-card h3 {
+            color: var(--black);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .area-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Differentials */
+        .differentials {
+            padding: 100px 0;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .differentials .section-title {
+            color: var(--white);
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .diff-item {
+            text-align: center;
+        }
+
+        .diff-item svg {
+            width: 70px;
+            height: 70px;
+            fill: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .diff-item h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--black);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--dark-gold);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--black);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--black);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L30 40 L70 40 Z"/>
+                    <rect x="48" y="40" width="4" height="30"/>
+                    <circle cx="50" cy="75" r="8"/>
+                    <path d="M20 40 L20 50 L80 50 L80 40"/>
+                </svg>
+                <span class="brand-name">Silva & Associados</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#areas">Áreas de Atuação</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <svg class="hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 10 L30 40 L70 40 Z"/>
+                <rect x="48" y="40" width="4" height="30"/>
+                <circle cx="50" cy="75" r="8"/>
+                <path d="M20 40 L20 50 L80 50 L80 40"/>
+            </svg>
+            <h1>Compromisso com a Justiça e com Você</h1>
+            <p>Atuação jurídica ética, estratégica e eficiente</p>
+            <div class="cta-buttons">
+                <a href="#contato" class="btn btn-primary">Agendar Consulta</a>
+                <a href="#contato" class="btn btn-secondary">Fale com um Advogado</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre o Escritório</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nossa História</h3>
+                    <p>Fundado com o propósito de oferecer assessoria jurídica de excelência, o Silva & Associados consolidou-se como referência na defesa dos direitos e interesses de seus clientes. Com anos de experiência no mercado, nosso escritório é reconhecido pela atuação técnica, ética e comprometida.</p>
+                    
+                    <h3>Missão e Valores</h3>
+                    <p>Nossa missão é garantir soluções jurídicas eficazes, sempre pautadas na transparência, no respeito e na dedicação incondicional aos interesses de nossos clientes. Acreditamos que a justiça deve ser acessível, compreensível e, acima de tudo, efetiva.</p>
+                    
+                    <p>Trabalhamos com profissionalismo e humanidade, entendendo que cada caso é único e merece atenção personalizada e estratégica.</p>
+                </div>
+                <div class="about-image">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L30 40 L70 40 Z"/>
+                        <rect x="48" y="40" width="4" height="30"/>
+                        <circle cx="50" cy="75" r="8"/>
+                        <path d="M20 40 L20 50 L80 50 L80 40"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section class="practice-areas" id="areas">
+        <div class="container">
+            <h2 class="section-title">Áreas de Atuação</h2>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                        <path d="M2 17L12 22L22 17"/>
+                        <path d="M2 12L12 17L22 12"/>
+                    </svg>
+                    <h3>Direito Civil</h3>
+                    <p>Atuação em contratos, responsabilidade civil, indenizações e demais questões relacionadas às relações entre particulares.</p>
+                </div>
+
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M8 7H16M8 12H16M8 17H12"/>
+                    </svg>
+                    <h3>Direito Trabalhista</h3>
+                    <p>Defesa de direitos trabalhistas, assessoria em rescisões, reclamações e acordos laborais.</p>
+                </div>
+
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6V12L16 14"/>
+                    </svg>
+                    <h3>Direito Penal</h3>
+                    <p>Defesa criminal em todas as esferas, garantindo os direitos constitucionais e a ampla defesa.</p>
+                </div>
+
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C21 6.9 20.1 6 19 6H5C3.9 6 3 6.9 3 8V16C3 17.1 3.9 18 5 18H19C20.1 18 21 17.1 21 16Z"/>
+                        <path d="M12 12C13.1 12 14 11.1 14 10C14 8.9 13.1 8 12 8C10.9 8 10 8.9 10 10C10 11.1 10.9 12 12 12Z"/>
+                    </svg>
+                    <h3>Direito Empresarial</h3>
+                    <p>Consultoria jurídica para empresas, contratos comerciais, recuperação judicial e societário.</p>
+                </div>
+
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 21V19C17 17.9 16.1 17 15 17H9C7.9 17 7 17.9 7 19V21"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <h3>Direito de Família e Sucessões</h3>
+                    <p>Divórcios, guarda, pensão alimentícia, inventários e planejamento sucessório.</p>
+                </div>
+
+                <div class="area-card">
+                    <svg class="area-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5 20.5 21 20 21H4C3.5 21 3 20.5 3 20V9Z"/>
+                        <path d="M9 21V12H15V21"/>
+                    </svg>
+                    <h3>Direito Imobiliário</h3>
+                    <p>Compra, venda, locação, regularização de imóveis e questões condominiais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentials -->
+    <section class="differentials">
+        <div class="container">
+            <h2 class="section-title">Nossos Diferenciais</h2>
+            <div class="diff-grid">
+                <div class="diff-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9 19.1 17 18 17H6C4.9 17 4 17.9 4 19V21"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <h3>Atendimento Personalizado</h3>
+                    <p>Cada cliente recebe atenção exclusiva, com soluções adaptadas às suas necessidades específicas.</p>
+                </div>
+
+                <div class="diff-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9 12L11 14L15 10"/>
+                    </svg>
+                    <h3>Transparência e Compromisso</h3>
+                    <p>Mantemos nossos clientes informados em todas as etapas do processo, com total clareza e honestidade.</p>
+                </div>
+
+                <div class="diff-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                        <path d="M2 17L12 22L22 17"/>
+                    </svg>
+                    <h3>Profissionais Experientes</h3>
+                    <p>Equipe altamente qualificada, com vasta experiência e constante atualização nas áreas de atuação.</p>
+                </div>
+
+                <div class="diff-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    <h3>Estratégia Jurídica Eficaz</h3>
+                    <p>Desenvolvemos táticas precisas e fundamentadas para alcançar os melhores resultados possíveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O Que Dizem Nossos Clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Profissionais extremamente competentes e atenciosos. Resolveram meu caso com excelência e sempre me mantiveram informado sobre cada etapa do processo."</p>
+                    <p class="testimonial-author">— M.S., Empresário</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"A dedicação e o comprometimento da equipe foram fundamentais para o sucesso da minha causa. Recomendo sem ressalvas."</p>
+                    <p class="testimonial-author">— A.R., Professora</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Encontrei no escritório não apenas expertise jurídica, mas também humanidade e compreensão. Serei eternamente grato."</p>
+                    <p class="testimonial-author">— J.L., Aposentado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Seu Nome" required>
+                        <input type="email" placeholder="Seu E-mail" required>
+                        <input type="tel" placeholder="Telefone">
+                        <textarea placeholder="Descreva brevemente seu caso" required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2c-.117.351.02.735.331.925.136.083.287.125.44.125.183 0 .364-.057.518-.166l3.382-2.545C8.694 19.48 10.286 20 12 20c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+                        </svg>
+                        <div>
+                            <strong>WhatsApp:</strong><br>
+                            (11) 98765-4321
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22 20.52 21.5 21.02 20.9 21.02C9.4 20.52 2 13.12 2 3.02C2 2.42 2.5 1.92 3.1 1.92H6.1C6.7 1.92 7.2 2.42 7.2 3.02C7.2 4.22 7.4 5.42 7.8 6.52C7.9 6.82 7.9 7.12 7.7 7.32L6 9.02C7.8 12.52 11.5 16.22 15 18.02L16.7 16.32C16.9 16.12 17.2 16.02 17.5 16.12C18.6 16.52 19.8 16.72 21 16.72C21.6 16.92 22 17.32 22 16.92Z"/>
+                        </svg>
+                        <div>
+                            <strong>Telefone:</strong><br>
+                            (11) 3456-7890
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"/>
+                        </svg>
+                        <div>
+                            <strong>E-mail:</strong><br>
+                            contato@silvaassociados.com.br
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"/>
+                        </svg>
+                        <div>
+                            <strong>Endereço:</strong><br>
+                            Av. Paulista, 1000 - Conj. 801<br>
+                            São Paulo - SP, 01310-100
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+                        </div>
+                    <div class="map-container">
+                        <p>📍 Mapa - Av. Paulista, 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Silva & Associados</h3>
+                    <p>Advocacia de excelência comprometida com a justiça e com você.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <circle cx="18" cy="6" r="1"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <p><a href="#sobre" style="color: #888; text-decoration: none;">Sobre Nós</a></p>
+                    <p><a href="#areas" style="color: #888; text-decoration: none;">Áreas de Atuação</a></p>
+                    <p><a href="#contato" style="color: #888; text-decoration: none;">Contato</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Horário de Atendimento</h3>
+                    <p>Segunda a Sexta: 9h às 18h</p>
+                    <p>Sábado: 9h às 13h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Informações Legais</h3>
+                    <p style="font-size: 0.9rem; color: #888;">OAB/SP nº 123.456</p>
+                    <p style="font-size: 0.9rem; color: #888;">CNPJ: 12.345.678/0001-90</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Silva & Associados - Todos os direitos reservados.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Desenvolvido com excelência para defender seus direitos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Obrigado pelo contato! Em breve retornaremos sua mensagem.');
+            e.target.reset();
+        });
+
+        // Scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.area-card, .diff-item, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.4)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>

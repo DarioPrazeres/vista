@@ -1,0 +1,446 @@
+/* Paleta de Cores:
+   - Preto (#0F0F0F)
+   - Branco (#FFFFFF)
+   - Dourado (#C89F3A) - Cor principal
+   - Dourado Claro (para background ou detalhes) (#EEE8AA)
+*/
+
+:root {
+    --color-primary: #C89F3A; /* Dourado */
+    --color-secondary: #0F0F0F; /* Preto */
+    --color-white: #FFFFFF; /* Branco */
+    --color-light-bg: #F5F5F5; /* Branco Sujo/Cinza Claro */
+    /* Variáveis de Fonte Atualizadas */
+    --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Montserrat', 'Didot', 'Garamond', serif; 
+}
+
+/* Base e Tipografia (Atualizada) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body); /* Fonte moderna e limpa */
+    line-height: 1.6;
+    color: var(--color-secondary);
+    background-color: var(--color-white);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading); /* Fonte para títulos com impacto elegante */
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 2em;
+    color: var(--color-primary); /* Dourado no título principal */
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 1em;
+    font-size: 1.05em; /* Ligeiramente menor para Montserrat */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+/* ... O restante do CSS (botões, seções, responsividade) permanece o mesmo ... */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.icon-gold {
+    color: var(--color-primary);
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+/* SEÇÃO 1 - HERÓI/HEADER */
+.hero-section {
+    background: url('advocacia_background.jpg') no-repeat center center/cover; /* Substitua pela imagem de fundo */
+    background-color: var(--color-secondary); /* Fallback */
+    min-height: 80vh;
+    color: var(--color-white);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo-text {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-shadow: none;
+}
+
+.nav-links a {
+    color: var(--color-white);
+    margin-left: 30px;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+.menu-toggle {
+    display: none; /* Esconde o botão de menu em desktop */
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+/* Conteúdo Herói */
+.hero-content {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 0.2em;
+    color: var(--color-primary);
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 2em;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.hero-buttons a {
+    margin: 0 10px;
+}
+
+/* Seções Gerais */
+.section {
+    padding: 80px 0;
+}
+
+.bg-black {
+    background-color: var(--color-secondary);
+}
+
+.bg-light {
+    background-color: var(--color-light-bg);
+}
+
+.text-white {
+    color: var(--color-white) !important;
+}
+
+/* SEÇÃO 2 - SOBRE */
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+}
+
+.sobre-text h2 {
+    text-align: left;
+}
+
+.sobre-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* SEÇÃO 3 - ÁREAS DE ATUAÇÃO */
+.atuacao-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.atuacao-grid .card {
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-primary);
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: var(--color-white);
+}
+
+.atuacao-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(199, 159, 58, 0.3);
+}
+
+.atuacao-grid .card h3 {
+    color: var(--color-primary);
+}
+
+/* SEÇÃO 4 - DIFERENCIAIS */
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.diferenciais-grid div {
+    padding: 20px;
+    border-left: 2px solid var(--color-primary);
+}
+
+/* SEÇÃO 5 - DEPOIMENTOS */
+.depoimentos-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.depoimento-card {
+    background-color: var(--color-white);
+    padding: 25px;
+    border-left: 5px solid var(--color-primary);
+    border-radius: 4px;
+    font-style: italic;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.cliente-nome {
+    font-weight: bold;
+    text-align: right;
+    margin-top: 15px;
+    color: var(--color-secondary);
+}
+
+/* SEÇÃO 6 - CONTATO */
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.contato-form input, .contato-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.contato-form button {
+    width: 100%;
+}
+
+.contato-info p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contato-info .icon-gold {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.mapa-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* RODAPÉ */
+footer {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.footer-grid p {
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-links .icon-gold-hover:hover {
+    color: var(--color-primary);
+}
+
+/* =================================================== */
+/* RESPONSIVIDADE (MOBILE FIRST) */
+/* =================================================== */
+
+@media (max-width: 992px) {
+    
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .atuacao-grid,
+    .diferenciais-grid,
+    .contato-grid {
+        grid-template-columns: 1fr 1fr; /* 2 colunas */
+    }
+
+    .sobre-grid {
+        grid-template-columns: 1fr; /* 1 coluna */
+        text-align: center;
+    }
+
+    .sobre-text h2 {
+        text-align: center;
+    }
+
+    .sobre-image {
+        order: -1; /* Move a imagem para cima no mobile */
+    }
+
+    .diferenciais-grid div {
+        border-left: none;
+        border-bottom: 2px solid var(--color-primary);
+        padding-bottom: 20px;
+    }
+
+    .footer-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-item {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: rgba(15, 15, 15, 0.9);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        z-index: 10;
+        padding: 10px 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .menu-toggle {
+        display: block; /* Mostra o botão de menu */
+    }
+
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero-buttons a {
+        margin: 0;
+    }
+    
+    .atuacao-grid,
+    .diferenciais-grid,
+    .contato-grid {
+        grid-template-columns: 1fr; /* 1 coluna */
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+}
